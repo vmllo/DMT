@@ -46,4 +46,20 @@ std::string* Config::parseData(std::string array[])
         }                                                                                    
     }while (found != -1);                                                                                           
     return array;                                                                            
-}   
+}                                                               
+Creature* setCreature(){                                                                                                                                                           
+    Config con;                                                                                                                                                                    
+    con.readText("config.txt");                                                                                                                                                    
+    const int arraySize2 = stoi(con.array[0]);                                                                                                                                               
+    int ii = 1;                                                                                                                                                                    
+   for(int i = 0; i <= arraySize2-1;i++){                                                                                                                                          
+       m[i].setName(con.array[ii++]);                                                                                                                                              
+       m[i].setType(con.array[ii++]);                                                                                                                                              
+       m[i].setLocation(con.array[ii++]);                                                                                                                                          
+       m[i].setarmor(stoi(con.array[ii++]));                                                                                                                                       
+       m[i].setHealth(stoi(con.array[ii++]));                                                                                                                                      
+   }                                                                                                                                                                               
+                                                                                                                                                                                   
+  return m;                                                                                                                                                                        
+}                                    
+    

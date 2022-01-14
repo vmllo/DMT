@@ -2,9 +2,10 @@
 #include <vector>                                                 
 #include <fstream>                                                                                                                                                   
 #include <iostream>                                                                                                                                                  
-#include <string>                                                                                                                                                    
+#include <string>          
+#include "stats.hpp"                                                                                                                                                
                                                                                                                                                                      
-class Config                                                                                                                                                         
+class Config : public stats                                                                                                                                                     
 {                                                                                                                                                                    
     public:                                                                                                                                                          
         void readText(std::string txt);                                                                                                                              
@@ -14,4 +15,4 @@ class Config
         std::string array[100];                                                                                                                                       
         std::string* parseData(std::string array[]);                                                                                                                 
                                                                                                                                                                      
-};   
+};                         
