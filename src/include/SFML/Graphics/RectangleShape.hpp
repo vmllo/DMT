@@ -30,23 +30,23 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Export.hpp>
 #include <SFML/Graphics/Shape.hpp>
-                        
-                        
-namespace sf            
-{                       
+
+
+namespace sf
+{
 ////////////////////////////////////////////////////////////
 /// \brief Specialized shape representing a rectangle
-///                     
+///
 ////////////////////////////////////////////////////////////
 class SFML_GRAPHICS_API RectangleShape : public Shape
-{                       
-public:                 
-                        
+{
+public:
+
     ////////////////////////////////////////////////////////////
     /// \brief Default constructor
-    ///                 
+    ///
     /// \param size Size of the rectangle
-    ///                 
+    ///
     ////////////////////////////////////////////////////////////
     explicit RectangleShape(const Vector2f& size = Vector2f(0, 0));
 
