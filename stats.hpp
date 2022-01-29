@@ -40,24 +40,24 @@ public:
     std::string getType()
     {
         return type;
-    }    
-         
-protected:
-    int health;
-    int armor;
-    std::string type;
-    std::string name;
-    std::string location;
-};       
+    }                        
+                             
+protected:                   
+    int health;              
+    int armor;               
+    std::string type;        
+    std::string name;        
+    std::string location;    
+};                           
 class Creature : public stats
-{        
-public:  
+{                            
+public:                      
     void defaultCreature(int health, int armor, std::string type, std::string name, std::string location)
-    {    
+    {                        
         stats::health = health;
         stats::armor = armor;
         stats::location = location;
-        stats::type = type;
-        stats::name = name;
-    }    
-};
+        stats::type = type;  
+        stats::name = name;  
+    }                        
+};                           

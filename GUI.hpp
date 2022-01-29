@@ -1,8 +1,8 @@
                                                                                      
 #include <SFML/Graphics.hpp>      
-#include <string>                                                   
+#include <string>                                                    
                                                                                                           
-class GUI: public stat                                                                                    
+class GUI                                                                               
 {                                                                                                         
 public:                                                                                                   
     void setButton(float sizex, float sizey, float posx, float posy, sf::Color color)                     
@@ -30,7 +30,21 @@ public:
     }                                                             
     sf::Text gettextBox(){                                        
         return textboxS;                                          
-    }                                                                             
+    }                                                             
+    void setCreature()                                           
+    {                                                                                                           
+        con.readText("config.txt");                               
+        arraySize2 = stoi(con.array[0]);                                                   
+        int ii = 1;                                               
+        for (int i = 0; i <= arraySize2 - 1; i++)                 
+        {                                                         
+            creatureArr[i].setName(con.array[ii++]);                        
+            creatureArr[i].setType(con.array[ii++]);                        
+            creatureArr[i].setLocation(con.array[ii++]);                    
+            creatureArr[i].setarmor(stoi(con.array[ii++]));                 
+            creatureArr[i].setHealth(stoi(con.array[ii++]));                
+        }                                                                                                
+    }                                                             
     bool buttonPressed(sf::Vector2i p)                                               
     {                                                                
         size = button.getSize();                                     
@@ -42,15 +56,18 @@ public:
         {                                                         
            returnValue = 1;                                       
         }                                                         
-        return returnValue;                        
-    }                                 
-                           
-private:                   
-    sf::Font font;         
-    sf::Text textboxS;      
-    sf::RectangleShape button;
-    sf::Mouse mouse;       
-    sf::Vector2f pp;       
-    sf::Vector2f size;     
-};                         
-                           
+        return returnValue;                                       
+    }                                                             
+                                                                  
+private:                                                          
+    sf::Font font;                                                
+    sf::Text textboxS;                                            
+    sf::RectangleShape button;                                    
+    sf::Mouse mouse;                                              
+    sf::Vector2f pp;                                              
+    sf::Vector2f size;                                            
+    const int arraySize2 = 0;           
+    Creature creatureArr[arraySize2];   
+    Config con;                            
+};                                      
+                                        
