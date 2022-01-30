@@ -1,36 +1,31 @@
-NumberofBadguys: 7                 
-Name: Vinny          
-Type: Human 
-Birthplace: NY         
-Armor: 100           
-Health: 100          
-Name: Alvin            
-Type: Human   
-Birthplace: cali
-Armor: 100           
-Health: 50          
-Name: Chloe          
-Type: Human  
-Birthplace: texas     
-Armor: 100           
-Health: 100                   
-Name: Peter          
-Type: Human 
-Birthplace: Arizona         
-Armor: 100           
-Health: 100          
-Name: Susie            
-Type: elf     
-Birthplace: cali         
-Armor: 100           
-Health: 50          
-Name: Steven          
-Type: dwarf     
-Birthplace: noidea
-Armor: 100           
-Health: 100          
-Name: tab            
-Type: Human 
-Birthplace:  bridgeport
-Armor: 100           
-Health: 50          
+NumberofPlayers: 4                       
+Name: Tab                                
+Type: Artificer                          
+Birthplace: Bilgewater                   
+Armor: 17                                
+Health: 33                               
+Mods: 8(-1)16(+3)12(+1)16(+3)13(+1)12(+1)   
+Inv: bunch of shit                               
+Name: Havoc                              
+Type: Rogue                              
+Birthplace: Zaun                         
+Armor: 13                                
+Health: 25                                      
+Mods: 8(-1)16(+3)12(+1)16(+3)13(+1)12(+1)       
+Inv:  bunch of shit                             
+Name: Jerah                                     
+Type: Paladin                                   
+Birthplace: fucking moon place                   
+Armor: 21                                       
+Health: 45                                      
+Mods: 8(-1)16(+3)12(+1)16(+3)13(+1)12(+1)       
+Inv:  bunch of shit                             
+Name: Esme rin                                  
+Type: Wizard                                    
+Birthplace: ionia                               
+Armor: 17                                       
+Health: 33                                      
+Mods: 8(-1)16(+3)12(+1)16(+3)13(+1)12(+1)       
+Inv:  bunch of shit                             
+                                                
+                                                

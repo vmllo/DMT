@@ -1,4 +1,8 @@
                                                                                      
+#ifndef GUI_HPP
+#define GUI_HPP
+               
+               
 #include <SFML/Graphics.hpp>      
 #include <string>                                                    
                                                                                                           
@@ -27,47 +31,33 @@ public:
     sf::RectangleShape getButton()                                                   
     {                                                                                
         return button;                                                               
-    }                                                             
-    sf::Text gettextBox(){                                        
-        return textboxS;                                          
-    }                                                             
-    void setCreature()                                           
-    {                                                                                                           
-        con.readText("config.txt");                               
-        arraySize2 = stoi(con.array[0]);                                                   
-        int ii = 1;                                               
-        for (int i = 0; i <= arraySize2 - 1; i++)                 
-        {                                                         
-            creatureArr[i].setName(con.array[ii++]);                        
-            creatureArr[i].setType(con.array[ii++]);                        
-            creatureArr[i].setLocation(con.array[ii++]);                    
-            creatureArr[i].setarmor(stoi(con.array[ii++]));                 
-            creatureArr[i].setHealth(stoi(con.array[ii++]));                
-        }                                                                                                
-    }                                                             
+    }                                                                     
+    sf::Text gettextBox(){                                                
+        return textboxS;                                                  
+    }                                                                                                                                           
     bool buttonPressed(sf::Vector2i p)                                               
-    {                                                                
-        size = button.getSize();                                     
-        float limitx = size.x + pp.x;                                
-        float limity = size.y + pp.y;                               
-        int returnValue = 0;                                        
-        pp = button.getPosition();                                  
-        if ((p.x < limitx && p.x > pp.x) && (p.y < limity && p.y > pp.y))
-        {                                                         
-           returnValue = 1;                                       
+    {                                                                        
+        size = button.getSize();                                             
+        float limitx = size.x + pp.x;                                        
+        float limity = size.y + pp.y;                                        
+        int returnValue = 0;                                                 
+        pp = button.getPosition();                                           
+        if ((p.x < limitx && p.x > pp.x) && (p.y < limity && p.y > pp.y))    
+        {                                                                    
+           returnValue = 1;                                                 
         }                                                         
         return returnValue;                                       
-    }                                                             
-                                                                  
-private:                                                          
-    sf::Font font;                                                
-    sf::Text textboxS;                                            
-    sf::RectangleShape button;                                    
-    sf::Mouse mouse;                                              
-    sf::Vector2f pp;                                              
-    sf::Vector2f size;                                            
-    const int arraySize2 = 0;           
-    Creature creatureArr[arraySize2];   
-    Config con;                            
-};                                      
-                                        
+          
+    }                                                                                                                                           
+                                                                                                                                           
+private:                                                                                                                                   
+    sf::Font font;                                                                                                                         
+    sf::Text textboxS;                                                                                                                     
+    sf::RectangleShape button;                                                                                                             
+    sf::Mouse mouse;                                                                                                                       
+    sf::Vector2f pp;                                                                                                                       
+    sf::Vector2f size;                                                                                                                     
+                                                                                                                                           
+};                                                                                                                                         
+      
+#endif

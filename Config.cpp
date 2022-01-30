@@ -4,7 +4,7 @@
 #include "Config.hpp"                                                                                               
 #include <string>                                                                                                   
                                                                                                                                               
- /*
+ /*               
     Config con;             
     con.readText("config.txt");
     const int arraySize2 = stoi(con.array[0]);
@@ -45,20 +45,21 @@ std::string* Config::parseData(std::string array[])
     {                                                                                                     
         found = -1;                                                                                       
         if (parsei < (arr))                                                                         
-        {                                                                                      
+        {                                                                                          
             my_str = array[parsei];                                                                 
             found = my_str.find(target[targeti], found + 1);                                                                           
-            if (found != -1)                                                                   
-            {                                                                                 
+            if (found != -1)                                                                       
+            {                                                                                      
                 my_str = my_str.substr(0, found) + my_str.substr(found + target[targeti].length());                                                                       
-                array[parsei] = my_str;                                                           
-                parsei++;                                                                    
+                array[parsei] = my_str;                                                            
+                parsei++;                                                                          
                 targeti++;                                                                         
-                if(targeti == 6){                                                                  
+                if(targeti == 8){                                                                  
                     targeti = 1;                                                                   
-                }                                                                            
-            }                                                                                
-        }                                                                                    
+                }                                                                                  
+            }                                                                                      
+        }                                                                                          
     }while (found != -1);                                                                                           
-    return array;                                                                            
-}                                                               
+    return array;                                                                                  
+}                                                                                                  
+                                                                                                   
