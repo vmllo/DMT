@@ -1,24 +1,9 @@
-#include "stdio.h"                                                                                      
-#include <fstream>                                                                                                  
-#include <iostream>                                                                                                 
-#include "Config.hpp"                                                                                               
-#include <string>                                                                                                   
-                                                                                                                                              
- /*               
-    Config con;             
-    con.readText("config.txt");
-    const int arraySize2 = stoi(con.array[0]);
-    Creature m[arraySize2]; 
-    int ii = 1;             
-    for (int i = 0; i <= arraySize2 - 1; i++)
-    {                       
-        m[i].setName(con.array[ii++]);
-        m[i].setType(con.array[ii++]);
-        m[i].setLocation(con.array[ii++]);
-        m[i].setarmor(stoi(con.array[ii++]));
-        m[i].setHealth(stoi(con.array[ii++]));
-    }  
-*/
+#include "stdio.h"                                                                                                                            
+#include <fstream>                                                                                                                            
+#include <iostream>                                                                                                                           
+#include "Config.hpp"                                                                                                                         
+#include <string>                                                                                                                             
+                                                                                                                                               
                                                                                                                                                                        
 void Config::readText(std::string inputName){                                                                                                                          
    std::fstream newfile;                                                                                                                                               
