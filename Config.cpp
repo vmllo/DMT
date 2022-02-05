@@ -1,8 +1,8 @@
-#include "stdio.h"                                                                                                                            
-#include <fstream>                                                                                                                            
-#include <iostream>                                                                                                                           
-#include "Config.hpp"                                                                                                                         
-#include <string>                                                                                                                             
+#include "stdio.h"                                                                                                                             
+#include <fstream>                                                                                                                             
+#include <iostream>                                                                                                                            
+#include "Config.hpp"                                                                                                                          
+#include <string>                                                                                                                              
                                                                                                                                                
                                                                                                                                                                        
 void Config::readText(std::string inputName){                                                                                                                          
