@@ -1,25 +1,26 @@
-#ifndef STATS_HPP
-#define STATS_HPP
-                 
-#include <string>
-                 
-class stats      
-{                
-public:          
+#ifndef STATS_HPP    
+#define STATS_HPP    
+                     
+#include <string>    
+#include "Config.hpp"
+                     
+class stats          
+{                    
+public:              
     std::string getHealth()
-    {            
+    {                
         return health;
-    }            
- 
+    }                
+                     
     void setHealth(std::string health)
-    {
+    {                
         this->health = health;
-    }
+    }                
     std::string getarmor()
-    {
+    {                
         return armor;
-    }
-
+    }                
+                     
     void setarmor(std::string armor)
     {
         this->armor = armor;
@@ -48,16 +49,16 @@ public:
             std::cout << mods << std::endl;                                      
         }                                                                        
         this->mods = mods;                                                       
-    }                                     
-    void setInv(std::string inv){         
-        this->inv = inv;                  
+    }                                                                 
+    void setInv(std::string inv){                                     
+        this->inv = inv;                                     
     }                                                                          
     std::string getLocation()                                                    
     {                                                                            
         return location;                                                         
-    }                                     
-    std::string getInv(){                 
-        return inv;                       
+    }                                                                 
+    std::string getInv(){                                             
+        return inv;                                                   
     }                                                                         
     std::string getName()                                                        
     {                                                                            
@@ -72,9 +73,9 @@ public:
         return mods;                                                             
     }                                                                            
                                                               
-protected:                                            
-    std::string health;
-    std::string armor;
+protected:                                                    
+    std::string health;                                       
+    std::string armor;                                        
     std::string type;
     std::string name;
     std::string location;

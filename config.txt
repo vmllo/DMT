@@ -1,31 +1,32 @@
-NumberofPlayers: 4                       
-Name: Tab                                
-Type: Artificer                          
-Birthplace: Bilgewater                   
-Armor: 17                                
-Health: 33                               
-Mods: 8(-1)16(+3)12(+1)16(+3)13(+1)12(+1)   
-Inv: bunch of shit                               
-Name: Havoc                              
-Type: Rogue                              
-Birthplace: Zaun                         
-Armor: 13                                
-Health: 25                                      
-Mods: 8(-1)16(+3)12(+1)16(+3)13(+1)12(+1)       
-Inv:  bunch of shit                             
-Name: Jerah                                     
-Type: Paladin                                   
+NumberofPlayers: 5                                
+Name: Tab.txt                                 
+Type: Artificer                                   
+Birthplace: Bilgewater                            
+Armor: 17                                         
+Health: 33                                        
+Mods: 8(-1)16(+3)12(+1)16(+3)13(+1)12(+1)                                         
+Name: Havoc.txt                               
+Type: Rogue                                       
+Birthplace: Zaun                                  
+Armor: 13                                         
+Health: 25                                        
+Mods: 8(-1)16(+3)12(+1)16(+3)13(+1)12(+1)                                        
+Name: Jerah.txt                                      
+Type: Paladin                                    
 Birthplace: fucking moon place                   
-Armor: 21                                       
-Health: 45                                      
-Mods: 8(-1)16(+3)12(+1)16(+3)13(+1)12(+1)       
-Inv:  bunch of shit                             
-Name: Esme rin                                  
-Type: Wizard                                    
-Birthplace: ionia                               
-Armor: 17                                       
-Health: 33                                      
-Mods: 8(-1)16(+3)12(+1)16(+3)13(+1)12(+1)       
-Inv:  bunch of shit                             
-                                                
-                                                
+Armor: 21                                        
+Health: 45                                       
+Mods: 8(-1)16(+3)12(+1)16(+3)13(+1)12(+1)                                       
+Name: Esme rin.txt                                   
+Type: Wizard                                     
+Birthplace: ionia                                
+Armor: 17                                        
+Health: 33                                       
+Mods: 8(-1)16(+3)12(+1)16(+3)13(+1)12(+1)                                    
+Name: Magnus.txt                                     
+Type: Bard                                       
+Birthplace: Freljord                             
+Armor: who the fuck knows                                       
+Health: alvin sucks ass                          
+Mods: idk alvin fucking sucks                                                     
+                                                 
