@@ -26,7 +26,8 @@ public:
         textboxS.setString(displaystring);                                                                  
         textboxS.setCharacterSize(size);                                                                     
         textboxS.setFillColor(color);                                                                      
-        textboxS.setPosition(sf::Vector2f(x, y));                            
+        textboxS.setPosition(sf::Vector2f(x, y));   
+                                 
     }                                                                       
     sf::RectangleShape getButton()                                                   
     {                                                                                
@@ -48,7 +49,8 @@ public:
         }                                                         
         return returnValue;                                       
           
-    }                                                                                                                                           
+    }      
+                                                                                                                              
                                                                                                                                            
 private:                                                                                                                                   
     sf::Font font;                                                                                                                         
@@ -56,7 +58,7 @@ private:
     sf::RectangleShape button;                                                                                                             
     sf::Mouse mouse;                                                                                                                       
     sf::Vector2f pp;                                                                                                                       
-    sf::Vector2f size;                                                                                                                     
+    sf::Vector2f size;         
                                                                                                                                            
 };                                                                                                                                         
       

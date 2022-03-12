@@ -27,7 +27,7 @@ void Config::readText(std::string inputName, std::string arrays[], std::string t
     newfile.open(arrays);                                                                                                                
     if (newfile.is_open())                                                                                           
     {                                                                                                                
-        for (ii; ii <= 6; ii++)                                                                                     
+        for (ii; ii <= 6; ii++)                                                                                      
         {                                                                                                            
             newfile << array[ii] + "\n";                                                                              
         }                                                                                                            
@@ -35,7 +35,7 @@ void Config::readText(std::string inputName, std::string arrays[], std::string t
     else                                                                                                             
     {                                                                                                                
         std::cout << "nope" << std::endl;                                                                            
-    }                                
+    }                                                                                                                
  }                                                                                                                                                                                                                                                                                                                                                                                                                   
                                                                                                                                                                        
 std::string* Config::parseData(std::string arrays[], std::string targets[])                                                                                                                    
