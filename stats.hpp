@@ -30,7 +30,7 @@ public:
         this->type = type;                           
     }                                                
     void setName(std::string name)                   
-    {                                                
+    {                                   
         this->name = name;                                                       
     }                                                                            
     void setLocation(std::string location)                                       
@@ -85,7 +85,7 @@ protected:
 class Creature : public stats
 {                    
 public:              
-    void defaultCreature(std::string health, std::string armor, std::string type, std::string name, std::string location)
+    void defaultCreature(std::string health, std::string armor, std::string type,std::string name, std::string location)
     {                
         stats::health = health;
         stats::armor = armor;
