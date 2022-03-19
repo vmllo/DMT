@@ -20,17 +20,20 @@ int main()
     int posLetters[7] = {50, 450, 515, 180, 150, 515, 200};
     int posy[8] = {60, 60, 200, 200, 300, 300, 400, 600};
     int size[8] = {50, 200, 200, 200, 200, 200, 500, 500};
-    int posDisplay[7] = {150, 250, 350, 450, 550, 650, 750};                                           
+    int posDisplay[7] = {150, 250, 350, 450, 550, 650, 750};
     background.setSize(sf::Vector2f(1000, 1000));
     sf::RenderWindow characterCreationWindow(sf::VideoMode(1000, 1000), "Create them you nerd >:o");
     std::string playerInput;
     long long unicodeStuff;
     int spot = 0;
+    int spotDisplay = 0;
     int posPos = 0;
     int temp = 0;
     int posyy = 3;
     sf::Vector2i p;
+    sf::Vector2i p2;
     int i;
+    int h;
     int flag = 0;
     int mouseFlag = 0;
     sf::String newName;
@@ -59,13 +62,14 @@ int main()
         sf::Event event;
         while (characterCreationWindow.pollEvent(event))
         {
-            if (event.type == sf::Event::MouseButtonPressed)
+            if (!mouseFlag)
             {
-                if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+                if (event.type == sf::Event::MouseButtonPressed)
                 {
-                    p = sf::Mouse::getPosition(characterCreationWindow);
-                    if (!mouseFlag)
+                    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
                     {
+                        p = sf::Mouse::getPosition(characterCreationWindow);
+
                         for (i = flag; i <= 7; i++)
                         {
                             if (button[i].buttonPressed(p))
@@ -85,17 +89,24 @@ int main()
                             std::cout << "hi" << std::endl;
                         }
                     }
-                    if (mouseFlag)
+                }
+            }
+            if (mouseFlag)
+            {
+                if (event.type == sf::Event::MouseButtonPressed)
+                {
+                    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
                     {
-                        std::cout << "stuff" << std::endl;
-                        for (int i = 0; i <= arraySize2 - 1; i++)
+                        p2 = sf::Mouse::getPosition(characterCreationWindow);
+                        for (h = 0; h <= 10; h++)
 
                         {
-                            spot = i;
-                            if (button[i].buttonPressed(p))
+                            if (button[h].buttonPressed(p2))
                             {
-                                displayPlayerBox[0].textBox("ArialCE.ttf", "Birthplace\n" + m[spot].getLocation() + "\n\nHP\n" + m[spot].getHealth() + "\n\nAC\n" + m[spot].getarmor(), 24, sf::Color::Red, 150, 200);
-                                displayPlayerBox[1].textBox("ArialCE.ttf", "Class\n" + m[spot].getType() + "\n\nStats\n" + m[spot].getMods(), 24, sf::Color::Red, 550, 200);
+                                spotDisplay = h;
+                                std::cout << "stuff" << std::endl;
+                                displayPlayerBox[0].textBox("ArialCE.ttf", "Birthplace\n" + m[spotDisplay].getLocation() + "\n\nHP\n" + m[spotDisplay].getHealth() + "\n\nAC\n" + m[spotDisplay].getarmor(), 24, sf::Color::Red, posDisplay[0], 200);
+                                displayPlayerBox[1].textBox("ArialCE.ttf", "Class\n" + m[spotDisplay].getType() + "\n\nStats\n" + m[spotDisplay].getMods(), 24, sf::Color::Red, posDisplay[6], 200);
 
                                 for (int i = 0; i <= 2; i++)
                                 {
@@ -108,6 +119,7 @@ int main()
                         if (button[9].buttonPressed(p))
                         {
                             state = Config::GUIstate::createState;
+                            mouseFlag = 0;
                         }
                     }
                 }
@@ -175,7 +187,6 @@ int main()
                 break;
 
             case Config::GUIstate::doneState:
-            mouseFlag = 1;
                 for (int i = 0; i <= con.r; i++)
                 {
                     con.readText(con.nameArray[i], con.array, con.target);
@@ -211,12 +222,14 @@ int main()
                 }
                 characterCreationWindow.draw(button[9].getButton());
                 characterCreationWindow.draw(button[10].getButton());
-                  for (int i = 0; i <= 1; i++)
+                for (int i = 0; i <= 1; i++)
                 {
                     characterCreationWindow.draw(choiceBox[i].gettextBox());
                 }
-                
+                mouseFlag = 1;
+
                 characterCreationWindow.display();
+
                 break;
             }
         }
