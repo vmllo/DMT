@@ -64,11 +64,13 @@ struct keyboard board[200]{
     {119, "w"},
     {120, "x"},
     {121, "y"},
-    {122, "z"}
-};
-void Config::readText(std::string inputName, std::string arrays[], std::string targets[])
+    {122, "z"}};
+bool Config::readText(std::string inputName, std::string arrays[], std::string targets[], int b, int p, int v)
 {
+    int didread = false;
     std::fstream newfile;
+    pp = p;
+    parsei = v;
     newfile.open(inputName, std::ios::in);
     arr = 0;
     if (newfile.is_open())
@@ -79,34 +81,59 @@ void Config::readText(std::string inputName, std::string arrays[], std::string t
             arrays[arr] = tp;
             arr++;
         }
+        didread = true;
         newfile.close();
     }
-    parseData(arrays, targets);
+    if (b)
+        parseData(arrays, targets);
+    else
+        r = stoi(array[0]);
+    return didread;
 }
-void Config::configCharacters()
+void Config::configCharacters(int b)
 {
     std::ofstream newfile;
-    for (int ii = 0; ii <= i; ii++)
+    if (b)
     {
-        n += dumbassKey[ii];
-    }
-    n = n + ".txt";
-    nameArray[r] = n;
-    r++;
-    imlazy(r);
-    newfile.open(n, std::ios::out);
-    std::cout << n << std::endl;
-    if (newfile.is_open())
-    {
-        for (int ii = 0; ii <= 6; ii++)
+        for (int ii = 0; ii <= i; ii++)
         {
-            newfile << target[ii] + array[ii];
+            n += dumbassKey[ii];
+        }
+        n = n + ".txt";
+        nameArray[r] = n;
+        newfile.open(n, std::ios::out);
+        r++;
+
+        if (newfile.is_open())
+        {
+            for (int ii = 0; ii <= 5; ii++)
+            {
+                newfile << target[ii] + array[ii] << "\n";
+            }
+        }
+        else
+        {
+            std::cout << "nope" << std::endl;
         }
     }
     else
     {
-        std::cout << "nope" << std::endl;
+        newfile.open("config.txt", std::ios::out);
+        if (newfile.is_open())
+        {
+
+            newfile << r << "\n";
+            for (int ii = 0; ii <= r; ii++)
+            {
+                newfile << nameArray[ii] << "\n";
+            }
+        }
+        else
+        {
+            std::cout << "nope" << std::endl;
+        }
     }
+    newfile.close();
 }
 void Config::ACII(unsigned int acii)
 {
@@ -125,7 +152,7 @@ std::string *Config::parseData(std::string arrays[], std::string targets[])
     std::string my_str;
     int found = -1;
     int targeti = 0;
-    int parsei = 0;
+    targetParse = 6;
     do
     {
         found = -1;
@@ -136,15 +163,17 @@ std::string *Config::parseData(std::string arrays[], std::string targets[])
             if (found != -1)
             {
                 my_str = my_str.substr(0, found) + my_str.substr(found + targets[targeti].length());
-                arrays[parsei] = my_str;
+                outArray[pp] = my_str;
                 parsei++;
                 targeti++;
+                pp++;
                 if (targeti == targetParse)
                 {
                     targeti = 1;
                 }
             }
         }
+
     } while (found != -1);
     return arrays;
 }

@@ -11,28 +11,33 @@
 class Config                                                                                                                                                                                                                                                                                                                                                                                                      
 {                                                                                                                                                                                                                                                                                                                                                                                                                 
     public:                                                                                                                                                                                                                                                                                                                                                                                                       
-        void readText(std::string txt,std::string arrays[],std::string targets[]);                                                                                                                                                                                                                                                                                                                                                      
+        bool readText(std::string txt,std::string arrays[],std::string targets[], int b, int p, int v);                                                                                                                                                                                                                                                                                                                                                      
         int arr = 0;                                                                                                                                                                                                                                                                                                                                                                                              
         int header = 1;                                                                                                                                                                                                                                                                                                                                                                                           
-        std::string target[7] = {"NumberofPlayers: ", "Name: ", "Type: ", "Birthplace: ", "Armor: ", "Health: ", "Mods: "};                                                                                                                                                                                                                                                                              
+        std::string target[6] = {"Name: ", "Type: ", "Birthplace: ", "Armor: ", "Health: ", "Mods: "};                                                                                                                                                                                                                                                                              
         std::string invarr[6] = {"inv items: ", "Tabs inv: ", "Havoc inv: ", "Jerah inv: ", "Esme rin inv: ", "Magnus Inv: "};         
                                                                                                                                                                                                                                                                            
-        void configCharacters();    
+        void configCharacters(int b);    
         void ACII(unsigned int acii);                                                                                                                                                                                                                                                                                                                                                                                                             
         std::string* parseData(std::string array[], std::string target[]);                                                                                                                                                                                                                                                                                                                                                              
         int targetParse;       
-        int i;     
-        int r = 0;
+        int i;
+        int pp;
         std::string n; 
+        char configBool;     
+        int r = 0;
+        int parsei = 0;
         std::string dumbass;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
         std::string array[100];   
+        std::string outArray[100];
         std::string dumbassKey[100];                                                                                                                                                                                                                                                                                                                                                                                
         std::string arrayInv[300]; 
         std::string nameArray[100]; 
         enum GUIstate
         {
             createState, 
-            doneState
+            doneState, 
+            configState
         };                                                                                                                                                                                                                                                                                                                                                                             
         GUIstate states;
 };                                                                                                                                                                                                                                                                                                                                                                                                                
