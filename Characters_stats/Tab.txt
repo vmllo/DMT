@@ -1,0 +1,11 @@
+Name: Tab
+Type: Artificer
+Birthplace: port
+Armor: 30
+Health: 35
+STR: 8(-1)
+DEX: 16(+3)
+CON: 12(+1)
+INT: 16(+3)
+WIS: 13(+1)
+CHA: 12(+1)

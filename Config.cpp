@@ -6,6 +6,7 @@
 #include <algorithm>
 #define shittoprint shit
 #define imlazy(shit) std::cout << shit << std::endl;
+#define file "Characters_stats\\"
 
 struct keyboard
 {
@@ -71,7 +72,8 @@ bool Config::readText(std::string inputName, std::string arrays[], std::string t
     std::fstream newfile;
     pp = p;
     parsei = v;
-    newfile.open(inputName, std::ios::in);
+    std::string inputfile = file+inputName;
+    newfile.open(file+inputName, std::ios::in);
     arr = 0;
     if (newfile.is_open())
     {
@@ -101,12 +103,12 @@ void Config::configCharacters(int b)
         }
         n = n + ".txt";
         nameArray[r] = n;
-        newfile.open(n, std::ios::out);
+        newfile.open(file+n, std::ios::out);
         r++;
 
         if (newfile.is_open())
         {
-            for (int ii = 0; ii <= 5; ii++)
+            for (int ii = 0; ii <= 10; ii++)
             {
                 newfile << target[ii] + array[ii] << "\n";
             }
@@ -118,12 +120,12 @@ void Config::configCharacters(int b)
     }
     else
     {
-        newfile.open("config.txt", std::ios::out);
+        newfile.open(file"config.txt", std::ios::out);
         if (newfile.is_open())
         {
 
             newfile << r << "\n";
-            for (int ii = 0; ii <= r; ii++)
+            for (int ii = 0; ii < r; ii++)
             {
                 newfile << nameArray[ii] << "\n";
             }
@@ -152,28 +154,24 @@ std::string *Config::parseData(std::string arrays[], std::string targets[])
     std::string my_str;
     int found = -1;
     int targeti = 0;
-    targetParse = 6;
-    do
+    int i = 0;
+    targetParse = 11;
+    while (parsei < 11)
     {
-        found = -1;
-        if (parsei < (arr))
+        if(0 == found)
+            found = -1;
+        my_str = arrays[parsei];
+        found = my_str.find(targets[targeti], found + 1);
+        if (-1 != found)
         {
-            my_str = arrays[parsei];
-            found = my_str.find(targets[targeti], found + 1);
-            if (found != -1)
-            {
-                my_str = my_str.substr(0, found) + my_str.substr(found + targets[targeti].length());
-                outArray[pp] = my_str;
-                parsei++;
-                targeti++;
-                pp++;
-                if (targeti == targetParse)
-                {
-                    targeti = 1;
-                }
-            }
+            my_str = my_str.substr(0, found) + my_str.substr(found + targets[targeti].length());
+            outArray[pp] = my_str;
+            targeti++;
+            pp++;
+            i++;
         }
+        parsei++;
+    }
 
-    } while (found != -1);
     return arrays;
 }
