@@ -6,7 +6,6 @@
 #include <algorithm>
 #define shittoprint shit
 #define imlazy(shit) std::cout << shit << std::endl;
-#define file "Characters_stats\\"
 
 struct keyboard
 {
@@ -66,14 +65,15 @@ struct keyboard board[200]{
     {120, "x"},
     {121, "y"},
     {122, "z"}};
-bool Config::readText(std::string inputName, std::string arrays[], std::string targets[], int b, int p, int v)
+bool Config::readText(std::string file, std::string inputName, std::string arrays[], std::string targets[], int b, int p, int v, int invb)
 {
     int didread = false;
     std::fstream newfile;
     pp = p;
     parsei = v;
-    std::string inputfile = file+inputName;
-    newfile.open(file+inputName, std::ios::in);
+    rr = invb;
+    std::string inputfile = file + inputName;
+    newfile.open(file + inputName, std::ios::in);
     arr = 0;
     if (newfile.is_open())
     {
@@ -92,7 +92,7 @@ bool Config::readText(std::string inputName, std::string arrays[], std::string t
         r = stoi(array[0]);
     return didread;
 }
-void Config::configCharacters(int b)
+void Config::configCharacters(std::string file, int b)
 {
     std::ofstream newfile;
     if (b)
@@ -103,7 +103,7 @@ void Config::configCharacters(int b)
         }
         n = n + ".txt";
         nameArray[r] = n;
-        newfile.open(file+n, std::ios::out);
+        newfile.open(file + n, std::ios::out);
         r++;
 
         if (newfile.is_open())
@@ -120,7 +120,7 @@ void Config::configCharacters(int b)
     }
     else
     {
-        newfile.open(file"config.txt", std::ios::out);
+        newfile.open(file + "config.txt", std::ios::out);
         if (newfile.is_open())
         {
 
@@ -156,16 +156,17 @@ std::string *Config::parseData(std::string arrays[], std::string targets[])
     int targeti = 0;
     int i = 0;
     targetParse = 11;
-    while (parsei < 11)
+    while (parsei <= 12)
     {
-        if(0 == found)
+        if (0 == found)
             found = -1;
-        my_str = arrays[parsei];
-        found = my_str.find(targets[targeti], found + 1);
+        my_str = arrays[parsei];      
+        found = my_str.find(targets[targeti], found + 1);       
         if (-1 != found)
         {
             my_str = my_str.substr(0, found) + my_str.substr(found + targets[targeti].length());
             outArray[pp] = my_str;
+            std::cout << my_str << std::endl;
             targeti++;
             pp++;
             i++;

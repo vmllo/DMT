@@ -4,7 +4,9 @@
 #include <string.h>
 #include "Inventory.hpp"
 #include "stats.hpp"
-#define font "font\\ArialCE.ttf"
+#define font "font/ArialCE.ttf"
+#define invi "inventory/"
+#define chara "Characters_stats/"
 
 int main()
 {
@@ -19,11 +21,11 @@ int main()
     Config con;
     sf::RectangleShape background;
     background.setFillColor(sf::Color::Black);
-    int pos[11] = {650, 650, 650, 650, 650, 300, 300, 300, 300, 300, 300};
-    int posLetters[11] = {550, 550, 520, 550, 550, 200, 200, 200, 200, 200, 200};
-    int posy[11] = {20, 100, 200, 300, 400, 20, 100, 200, 300, 400, 500};
-    int size[11] = {200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200};
-    int posDisplay[6] = {150, 250, 350, 450, 550, 650};
+    int pos[12] = {650, 650, 650, 650, 650, 300, 300, 300, 300, 300, 300,600};
+    int posLetters[12] = {550, 550, 520, 550, 550, 200, 200, 200, 200, 200, 200, 550};
+    int posy[12] = {20, 100, 200, 300, 400, 20, 100, 200, 300, 400, 500, 600};
+    int size[12] = {200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 500};
+    int posDisplay[7] = {150, 250, 350, 450, 550, 650};
     background.setSize(sf::Vector2f(1000, 1000));
     sf::RenderWindow characterCreationWindow(sf::VideoMode(1000, 1000), "Create them you nerd >:o");
     std::string playerInput;
@@ -60,23 +62,22 @@ int main()
     choiceBox[2].textBox(font, "Load", 24, sf::Color::Red, 30, 250);
     choiceBox[3].textBox(font, "Load Existing", 24, sf::Color::Red, 30, 350);
     choiceBox[4].textBox(font, "Configure", 24, sf::Color::Red, 30, 450);
-    button[11].setButton(150, 50, 30, 450, sf::Color::White); // configure
-    button[12].setButton(75, 50, 30, 50, sf::Color::White);   // create
-    button[13].setButton(50, 50, 30, 150, sf::Color::White);  // done
-    button[14].setButton(50, 50, 30, 250, sf::Color::White);  // load
-    button[15].setButton(150, 50, 30, 350, sf::Color::White); // load existing
+    button[12].setButton(150, 50, 30, 450, sf::Color::White); // configure
+    button[13].setButton(75, 50, 30, 50, sf::Color::White);   // create
+    button[14].setButton(50, 50, 30, 150, sf::Color::White);  // done
+    button[15].setButton(50, 50, 30, 250, sf::Color::White);  // load
+    button[16].setButton(150, 50, 30, 350, sf::Color::White); // load existing
 
-    for (int i = 0; i <= 10; i++)
+    for (int i = 0; i <= 11; i++)
     {
         playerBox[i].textBox(font, con.target[i], 24, sf::Color::Red, posLetters[i], posy[i]);
     }
 
-    for (int i = 0; i <= 10; i++)
+    for (int i = 0; i <= 11; i++)
     {
         button[i].setButton(size[i], 50, pos[i], posy[i], sf::Color::White);
     }
     characterCreationWindow.clear();
-    inv.inventory();
     while (characterCreationWindow.isOpen())
     {
         sf::Event event;
@@ -97,33 +98,32 @@ int main()
                                 spot = i;
                                 if (flag == 11)
                                 {
-                                    con.configCharacters(1);
+                                    con.configCharacters(chara,1);
                                     confirm = 1;
                                 }
                             }
                         }
-                        if (button[13].buttonPressed(p))
+                        if (button[14].buttonPressed(p))
                         {
                             flag = 0;
                             spot = 0;
-                            std::cout << "z" << std::endl;
                             std::fill_n(con.dumbassKey, 100, "");
                             con.n = "";
                         }
                         if (confirm)
                         {
-                            if (button[14].buttonPressed(p))
+                            if (button[15].buttonPressed(p))
                             {
                                 mouseFlag = 1;
                                 displayFlag = 1;
-                                con.configCharacters(0);
+                                con.configCharacters(chara,0);
                                 characterCreationWindow.clear();
                                 mft = 0;
                                 fillari = 0;
                                 state = Config::GUIstate::doneState;
                             }
                         }
-                        if (button[15].buttonPressed(p))
+                        if (button[16].buttonPressed(p))
                         {
                             mouseFlag = 1;
                             displayFlag = 1;
@@ -159,12 +159,13 @@ int main()
                                 displayPlayerBox[8].textBox(font, "WIS: " + m[spotDisplay].getWis(), 35, sf::Color::Red, 350, 350);
                                 displayPlayerBox[9].textBox(font, "CHA: " + m[spotDisplay].getCha(), 35, sf::Color::Red, 350, 400);
                             }
+
                         }
                         if (button[9].buttonPressed(p2))
                         {
                             stuff = 1;
                         }
-                        if (button[12].buttonPressed(p2))
+                        if (button[13].buttonPressed(p2))
                         {
                             state = Config::GUIstate::createState;
                             flag = 0;
@@ -190,14 +191,13 @@ int main()
                 {
                     if (event.text.unicode == '\b' && playerInput.end() != playerInput.begin())
                     {
-                        std::cout << playerInput << std::endl;
                         if (flag == 0)
                             std::fill_n(con.dumbassKey, n - 1, "");
                         playerInput.erase(playerInput.end() - 1);
                     }
                     else
                     {
-                        if (flag < 11 && flag > -1)
+                        if (flag < 12 && flag > -1)
                         {
                             if (event.text.unicode == '\x5D')
                             {
@@ -226,11 +226,11 @@ int main()
                 }
                 characterCreationWindow.clear();
                 textbox[spot].textBox(font, playerInput, 24, sf::Color::Red, pos[spot], posy[spot]);
-                for (int i = 0; i <= 16; i++)
+                for (int i = 0; i <= 17; i++)
                 {
                     characterCreationWindow.draw(button[i].getButton());
                 }
-                for (int i = 0; i <= 10; i++)
+                for (int i = 0; i <= 11; i++)
                 {
                     characterCreationWindow.draw(textbox[i].gettextBox());
                 }
@@ -238,7 +238,7 @@ int main()
                 {
                     characterCreationWindow.draw(choiceBox[i].gettextBox());
                 }
-                for (int i = 0; i <= 10; i++)
+                for (int i = 0; i <= 11; i++)
                 {
                     characterCreationWindow.draw(playerBox[i].gettextBox());
                 }
@@ -250,7 +250,7 @@ int main()
                 if (stuff)
                 {
                     stuff = 0;
-                    if (con.readText("config.txt", con.array, con.target, 0, 0, 0))
+                    if (con.readText(chara,"config.txt", con.array, con.target, 0, 0, 0, 0))
                     {
                         int ll = 1;
                         for (int l = 0; l <= con.r; l++)
@@ -273,7 +273,7 @@ int main()
                         parsespot += 11;
                         counter++;
                     }
-                    con.readText(con.nameArray[fillari], con.array, con.target, 1, parsespot, 0);
+                    con.readText(chara, con.nameArray[fillari], con.array, con.target, 1, parsespot, 0,0);
                 }
               
                 int ii = 0;
@@ -318,11 +318,11 @@ int main()
                     characterCreationWindow.draw(displayPlayerBox[i].gettextBox());
                 }
 
-                characterCreationWindow.draw(button[11].getButton());
                 characterCreationWindow.draw(button[12].getButton());
                 characterCreationWindow.draw(button[13].getButton());
                 characterCreationWindow.draw(button[14].getButton());
                 characterCreationWindow.draw(button[15].getButton());
+                characterCreationWindow.draw(button[16].getButton());
 
                 for (int i = 0; i <= 5; i++)
                 {
