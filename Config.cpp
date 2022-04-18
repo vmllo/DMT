@@ -108,7 +108,7 @@ void Config::configCharacters(std::string file, int b)
 
         if (newfile.is_open())
         {
-            for (int ii = 0; ii <= 10; ii++)
+            for (int ii = 0; ii <= 11; ii++)
             {
                 newfile << target[ii] + array[ii] << "\n";
             }

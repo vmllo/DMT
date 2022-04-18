@@ -91,14 +91,15 @@ int main()
                     {
                         p = sf::Mouse::getPosition(characterCreationWindow);
 
-                        for (i = flag; i <= 11; i++)
+                        for (i = flag; i <= 12; i++)
                         {
                             if (button[i].buttonPressed(p))
                             {
                                 spot = i;
-                                if (flag == 11)
+                                if (flag == 12)
                                 {
                                     con.configCharacters(chara,1);
+                                    std::cout << "1" << std::endl;
                                     confirm = 1;
                                 }
                             }
@@ -219,6 +220,7 @@ int main()
                                 flag++;
                                 con.array[spot] = playerInput;
                                 playerInput = "*";
+                                std::cout << flag << std::endl;
                                 spot++;
                             }
                         }
