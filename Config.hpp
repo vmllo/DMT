@@ -36,6 +36,7 @@ class Config
         {
             createState, 
             doneState, 
+            invState, 
             configState
         };                                                                                                                                                                                                                                                                                                                                                                             
         GUIstate states;

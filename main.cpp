@@ -21,8 +21,8 @@ int main()
     Config con;
     sf::RectangleShape background;
     background.setFillColor(sf::Color::Black);
-    int pos[12] = {650, 650, 650, 650, 650, 300, 300, 300, 300, 300, 300,600};
-    int posLetters[12] = {550, 550, 520, 550, 550, 200, 200, 200, 200, 200, 200, 550};
+    int pos[12] = {650, 650, 650, 650, 650, 300, 300, 300, 300, 300, 300,200};
+    int posLetters[12] = {550, 550, 520, 550, 550, 200, 200, 200, 200, 200, 200, 150};
     int posy[12] = {20, 100, 200, 300, 400, 20, 100, 200, 300, 400, 500, 600};
     int size[12] = {200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 500};
     int posDisplay[7] = {150, 250, 350, 450, 550, 650};
@@ -62,11 +62,13 @@ int main()
     choiceBox[2].textBox(font, "Load", 24, sf::Color::Red, 30, 250);
     choiceBox[3].textBox(font, "Load Existing", 24, sf::Color::Red, 30, 350);
     choiceBox[4].textBox(font, "Configure", 24, sf::Color::Red, 30, 450);
+    choiceBox[5].textBox(font, "Inventory", 24, sf::Color::Red, 30, 550);
     button[12].setButton(150, 50, 30, 450, sf::Color::White); // configure
     button[13].setButton(75, 50, 30, 50, sf::Color::White);   // create
     button[14].setButton(50, 50, 30, 150, sf::Color::White);  // done
     button[15].setButton(50, 50, 30, 250, sf::Color::White);  // load
     button[16].setButton(150, 50, 30, 350, sf::Color::White); // load existing
+    button[17].setButton(150, 50, 30, 550, sf::Color::White); // inventory
 
     for (int i = 0; i <= 11; i++)
     {
@@ -134,6 +136,10 @@ int main()
                             characterCreationWindow.clear();
                             state = Config::GUIstate::doneState;
                         }
+                        if (button[17].buttonPressed(p))
+                        {
+                            state = Config::GUIstate::invState;
+                        }
                     }
                 }
             }
@@ -175,6 +181,10 @@ int main()
                             std::fill_n(con.dumbassKey, 100, "");
                             con.n = "";
                             mouseFlag = 0;
+                        }
+                        if (button[17].buttonPressed(p))
+                        {
+                            state = Config::GUIstate::invState;
                         }
                     }
                 }
@@ -220,8 +230,8 @@ int main()
                                 flag++;
                                 con.array[spot] = playerInput;
                                 playerInput = "*";
-                                std::cout << flag << std::endl;
                                 spot++;
+                                std::cout << spot << std::endl;
                             }
                         }
                     }
@@ -244,6 +254,52 @@ int main()
                 {
                     characterCreationWindow.draw(playerBox[i].gettextBox());
                 }
+                characterCreationWindow.display();
+
+                break;
+            case Config::GUIstate::invState:
+                if (event.type == sf::Event::TextEntered)
+                {
+                    if (event.text.unicode == '\b' && playerInput.end() != playerInput.begin())
+                    {
+                        if (flag == 0)
+                            std::fill_n(con.dumbassKey, n - 1, "");
+                        playerInput.erase(playerInput.end() - 1);
+                    }
+                    else
+                    {
+                        if (flag < 12 && flag > -1)
+                        {
+                            if (event.text.unicode == '\x5D')
+                            {
+                                flag--;
+                                spot--;
+                                playerInput = "-";
+                            }
+                            else
+                            {
+                                playerInput += static_cast<char>(event.text.unicode);
+                            }
+                            if (flag == 0)
+                            {
+                                n = event.text.unicode;
+                                con.ACII(n);
+                            }
+                            if (event.text.unicode == '\x0D')
+                            {
+                                flag++;
+                                con.array[spot] = playerInput;
+                                playerInput = "*";
+                                std::cout << flag << std::endl;
+                                spot++;
+                            }
+                        }
+                    }
+                }
+                characterCreationWindow.clear();
+                textbox[0].textBox(font, playerInput, 24, sf::Color::Red, 200, 600);
+                characterCreationWindow.draw(button[11].getButton());
+                characterCreationWindow.draw(textbox[0].gettextBox());
                 characterCreationWindow.display();
 
                 break;
@@ -325,6 +381,8 @@ int main()
                 characterCreationWindow.draw(button[14].getButton());
                 characterCreationWindow.draw(button[15].getButton());
                 characterCreationWindow.draw(button[16].getButton());
+                characterCreationWindow.draw(button[17].getButton());
+
 
                 for (int i = 0; i <= 5; i++)
                 {
