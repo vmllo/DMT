@@ -17,11 +17,12 @@ int main()
     GUI displayBox[15];
     GUI displaybuttons[15];
     GUI displayPlayerBox[20];
+    GUI inven[200];
     Inventory inv;
     Config con;
     sf::RectangleShape background;
     background.setFillColor(sf::Color::Black);
-    int pos[12] = {650, 650, 650, 650, 650, 300, 300, 300, 300, 300, 300,200};
+    int pos[12] = {650, 650, 650, 650, 650, 300, 300, 300, 300, 300, 300, 200};
     int posLetters[12] = {550, 550, 520, 550, 550, 200, 200, 200, 200, 200, 200, 150};
     int posy[12] = {20, 100, 200, 300, 400, 20, 100, 200, 300, 400, 500, 600};
     int size[12] = {200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 500};
@@ -53,22 +54,25 @@ int main()
     int displayi = 0;
     int displayFlag = 1;
     int debugi = 0;
+    int loc = 100;
+    char invFlag = 0;
     int noob = 0;
     int parsespot = 0;
     Creature m[arraySize2];
     unsigned int state = Config::GUIstate::createState;
-    choiceBox[0].textBox(font, "Create", 24, sf::Color::Red, 30, 50);
-    choiceBox[1].textBox(font, "Done", 24, sf::Color::Red, 30, 150);
-    choiceBox[2].textBox(font, "Load", 24, sf::Color::Red, 30, 250);
-    choiceBox[3].textBox(font, "Load Existing", 24, sf::Color::Red, 30, 350);
-    choiceBox[4].textBox(font, "Configure", 24, sf::Color::Red, 30, 450);
-    choiceBox[5].textBox(font, "Inventory", 24, sf::Color::Red, 30, 550);
-    button[12].setButton(150, 50, 30, 450, sf::Color::White); // configure
-    button[13].setButton(75, 50, 30, 50, sf::Color::White);   // create
-    button[14].setButton(50, 50, 30, 150, sf::Color::White);  // done
-    button[15].setButton(50, 50, 30, 250, sf::Color::White);  // load
-    button[16].setButton(150, 50, 30, 350, sf::Color::White); // load existing
-    button[17].setButton(150, 50, 30, 550, sf::Color::White); // inventory
+    con.init(30, 30, 30, 30, 30, 30, 50, 150, 250, 350, 450, 550);
+    choiceBox[0].textBox(font, "Create", 24, sf::Color::Red, 30, con.creaty);
+    choiceBox[1].textBox(font, "Done", 24, sf::Color::Red, 30, con.doney);
+    choiceBox[2].textBox(font, "Load", 24, sf::Color::Red, 30, con.loady);
+    choiceBox[3].textBox(font, "Load Existing", 24, sf::Color::Red, 30, con.loadey);
+    choiceBox[4].textBox(font, "Configure", 24, sf::Color::Red, 30, con.configy);
+    choiceBox[5].textBox(font, "Inventory", 24, sf::Color::Red, 30, con.invy);
+    button[12].setButton(150, 50, 30, 450, sf::Color::White);      // configure
+    button[13].setButton(75, 50, 30, 50, sf::Color::White);        // create
+    button[14].setButton(50, 50, 30, 150, sf::Color::White);       // done
+    button[15].setButton(50, 50, 30, 250, sf::Color::White);       // load
+    button[16].setButton(150, 50, 30, 350, sf::Color::White);      // load existing
+    button[17].setButton(150, 50, 30, con.invy, sf::Color::White); // inventory
 
     for (int i = 0; i <= 11; i++)
     {
@@ -100,8 +104,7 @@ int main()
                                 spot = i;
                                 if (flag == 12)
                                 {
-                                    con.configCharacters(chara,1);
-                                    std::cout << "1" << std::endl;
+                                    con.configCharacters(chara, 1);
                                     confirm = 1;
                                 }
                             }
@@ -119,7 +122,7 @@ int main()
                             {
                                 mouseFlag = 1;
                                 displayFlag = 1;
-                                con.configCharacters(chara,0);
+                                con.configCharacters(chara, 0);
                                 characterCreationWindow.clear();
                                 mft = 0;
                                 fillari = 0;
@@ -133,12 +136,16 @@ int main()
                             mft = 0;
                             fillari = 0;
                             noob = 0;
+                            invFlag = 1;
                             characterCreationWindow.clear();
                             state = Config::GUIstate::doneState;
                         }
                         if (button[17].buttonPressed(p))
                         {
-                            state = Config::GUIstate::invState;
+                            if (invFlag)
+                            {
+                                state = Config::GUIstate::invState;
+                            }
                         }
                     }
                 }
@@ -166,7 +173,6 @@ int main()
                                 displayPlayerBox[8].textBox(font, "WIS: " + m[spotDisplay].getWis(), 35, sf::Color::Red, 350, 350);
                                 displayPlayerBox[9].textBox(font, "CHA: " + m[spotDisplay].getCha(), 35, sf::Color::Red, 350, 400);
                             }
-
                         }
                         if (button[9].buttonPressed(p2))
                         {
@@ -184,7 +190,10 @@ int main()
                         }
                         if (button[17].buttonPressed(p))
                         {
-                            state = Config::GUIstate::invState;
+                            if (invFlag)
+                            {
+                                state = Config::GUIstate::invState;
+                            }
                         }
                     }
                 }
@@ -238,6 +247,8 @@ int main()
                 }
                 characterCreationWindow.clear();
                 textbox[spot].textBox(font, playerInput, 24, sf::Color::Red, pos[spot], posy[spot]);
+                button[11].setButton(500, 50, 200, 600, sf::Color::White);
+                textbox[0].textBox(font, playerInput, 24, sf::Color::Red, 200, 600);
                 for (int i = 0; i <= 17; i++)
                 {
                     characterCreationWindow.draw(button[i].getButton());
@@ -268,38 +279,71 @@ int main()
                     }
                     else
                     {
-                        if (flag < 12 && flag > -1)
+                        if (event.text.unicode == '\x5D')
                         {
-                            if (event.text.unicode == '\x5D')
-                            {
-                                flag--;
-                                spot--;
-                                playerInput = "-";
-                            }
-                            else
-                            {
-                                playerInput += static_cast<char>(event.text.unicode);
-                            }
-                            if (flag == 0)
-                            {
-                                n = event.text.unicode;
-                                con.ACII(n);
-                            }
-                            if (event.text.unicode == '\x0D')
-                            {
-                                flag++;
-                                con.array[spot] = playerInput;
-                                playerInput = "*";
-                                std::cout << flag << std::endl;
-                                spot++;
-                            }
+                            flag--;
+                            spot--;
+                            playerInput = "-";
+                        }
+                        else
+                        {
+                            playerInput += static_cast<char>(event.text.unicode);
+                        }
+                        if (flag == 0)
+                        {
+                            n = event.text.unicode;
+                            con.ACII(n);
+                        }
+                        if (event.text.unicode == '\x0D')
+                        {
+                            flag++;
+                            loc += 50;
+                            inven[spot].textBox(font, playerInput, 24, sf::Color::Red, 200, loc);
+                            playerInput = "";
+                            std::cout << flag << std::endl;
+                            spot++;
                         }
                     }
                 }
                 characterCreationWindow.clear();
-                textbox[0].textBox(font, playerInput, 24, sf::Color::Red, 200, 600);
+                button[11].setButton(500, 50, 250, 800, sf::Color::White);
+                textbox[0].textBox(font, playerInput, 24, sf::Color::Red, 250, 800);
+                button[17].setButton(150, 50, 30, 800, sf::Color::White); // inventory
+                choiceBox[5].textBox(font, "Inventory", 24, sf::Color::Red, 30, 800);
+                characterCreationWindow.draw(button[12].getButton());
+                characterCreationWindow.draw(button[13].getButton());
+                // characterCreationWindow.draw(button[14].getButton());
+                characterCreationWindow.draw(button[15].getButton());
+                characterCreationWindow.draw(button[16].getButton());
+                characterCreationWindow.draw(button[17].getButton());
                 characterCreationWindow.draw(button[11].getButton());
                 characterCreationWindow.draw(textbox[0].gettextBox());
+                for (int i = 0; i <= arraySize2; i++)
+                {
+                    displayBox[i].textBox(font, m[i].getName(), 24, sf::Color::Red, posDisplay[i], 60);
+                }
+                for (int i = 0; i <= 5; i++)
+                {
+                    if (i != 1)
+                        characterCreationWindow.draw(choiceBox[i].gettextBox());
+                }
+                for (int i = 0; i <= spot; i++)
+                {
+                    characterCreationWindow.draw(inven[i].gettextBox());
+                }
+                for (int i = 0; i <= arraySize2; i++)
+                {
+                    displaybuttons[i].setButton(75, 50, posDisplay[i], 60, sf::Color::White);
+                }
+                for (int i = 0; i <= arraySize2; i++)
+                {
+                    characterCreationWindow.draw(displaybuttons[i].getButton());
+                }
+                for (int i = 0; i <= arraySize2; i++)
+                {
+                    characterCreationWindow.draw(displayBox[i].gettextBox());
+                }
+
                 characterCreationWindow.display();
 
                 break;
@@ -308,7 +352,7 @@ int main()
                 if (stuff)
                 {
                     stuff = 0;
-                    if (con.readText(chara,"config.txt", con.array, con.target, 0, 0, 0, 0))
+                    if (con.readText(chara, "config.txt", con.array, con.target, 0, 0, 0, 0))
                     {
                         int ll = 1;
                         for (int l = 0; l <= con.r; l++)
@@ -331,9 +375,9 @@ int main()
                         parsespot += 11;
                         counter++;
                     }
-                    con.readText(chara, con.nameArray[fillari], con.array, con.target, 1, parsespot, 0,0);
+                    con.readText(chara, con.nameArray[fillari], con.array, con.target, 1, parsespot, 0, 0);
                 }
-              
+
                 int ii = 0;
                 for (mft; mft <= arraySize2; mft++)
                 {
@@ -382,7 +426,6 @@ int main()
                 characterCreationWindow.draw(button[15].getButton());
                 characterCreationWindow.draw(button[16].getButton());
                 characterCreationWindow.draw(button[17].getButton());
-
 
                 for (int i = 0; i <= 5; i++)
                 {

@@ -148,7 +148,21 @@ void Config::ACII(unsigned int acii)
         }
     }
 }
-
+void Config::init(int creatxx, int donexx, int loadxx, int loadexx, int configxx, int invxx, int creatyy, int doneyy, int loadyy, int loadeyy, int configyy, int invyy)
+{
+    creatx = creatxx;
+    donex = donexx;
+    loadx = loadxx;
+    loadex = loadexx;
+    configx = configxx;
+    invx = invxx;
+    creaty = creatyy;
+    doney = doneyy;
+    loady = loadyy;
+    loadey = loadeyy;
+    configy = configyy;
+    invy = invyy;
+}
 std::string *Config::parseData(std::string arrays[], std::string targets[])
 {
     std::string my_str;
