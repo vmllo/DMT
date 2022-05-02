@@ -37,6 +37,7 @@ int main()
     int temp = 0;
     int posyy = 3;
     int stuff = 1;
+    char invSpot = 0;
     sf::Vector2i p;
     sf::Vector2i p2;
     int i;
@@ -217,31 +218,23 @@ int main()
                     }
                     else
                     {
-                        if (flag < 12 && flag > -1)
+                        if (event.text.unicode == '\x5D')
                         {
-                            if (event.text.unicode == '\x5D')
-                            {
-                                flag--;
-                                spot--;
-                                playerInput = "-";
-                            }
-                            else
-                            {
-                                playerInput += static_cast<char>(event.text.unicode);
-                            }
-                            if (flag == 0)
-                            {
-                                n = event.text.unicode;
-                                con.ACII(n);
-                            }
-                            if (event.text.unicode == '\x0D')
-                            {
-                                flag++;
-                                con.array[spot] = playerInput;
-                                playerInput = "*";
-                                spot++;
-                                std::cout << spot << std::endl;
-                            }
+                            invFlag--;
+                            invSpot--;
+                            playerInput = "-";
+                        }
+                        else
+                        {
+                            playerInput += static_cast<char>(event.text.unicode);
+                        }
+                        if (event.text.unicode == '\x0D')
+                        {
+                            invFlag++;
+                            con.array[spot] = playerInput;
+                            playerInput = "*";
+                            invSpot++;
+                            std::cout << spot << std::endl;
                         }
                     }
                 }
@@ -312,7 +305,6 @@ int main()
                 choiceBox[5].textBox(font, "Inventory", 24, sf::Color::Red, 30, 800);
                 characterCreationWindow.draw(button[12].getButton());
                 characterCreationWindow.draw(button[13].getButton());
-                // characterCreationWindow.draw(button[14].getButton());
                 characterCreationWindow.draw(button[15].getButton());
                 characterCreationWindow.draw(button[16].getButton());
                 characterCreationWindow.draw(button[17].getButton());
