@@ -1,3 +1,4 @@
+
 #include "GUI.hpp"
 #include "Config.hpp"
 #include <cmath>
@@ -37,7 +38,6 @@ int main()
     int temp = 0;
     int posyy = 3;
     int stuff = 1;
-    char invSpot = 0;
     sf::Vector2i p;
     sf::Vector2i p2;
     int i;
@@ -218,30 +218,37 @@ int main()
                     }
                     else
                     {
-                        if (event.text.unicode == '\x5D')
+                        if (flag < 12 && flag > -1)
                         {
-                            invFlag--;
-                            invSpot--;
-                            playerInput = "-";
-                        }
-                        else
-                        {
-                            playerInput += static_cast<char>(event.text.unicode);
-                        }
-                        if (event.text.unicode == '\x0D')
-                        {
-                            invFlag++;
-                            con.array[spot] = playerInput;
-                            playerInput = "*";
-                            invSpot++;
-                            std::cout << spot << std::endl;
+                            if (event.text.unicode == '\x5D')
+                            {
+                                flag--;
+                                spot--;
+                                playerInput = "-";
+                            }
+                            else
+                            {
+                                playerInput += static_cast<char>(event.text.unicode);
+                            }
+                            if (flag == 0)
+                            {
+                                n = event.text.unicode;
+                                con.ACII(n);
+                            }
+                            if (event.text.unicode == '\x0D')
+                            {
+                                flag++;
+                                con.array[spot] = playerInput;
+                                playerInput = "*";
+                                spot++;
+                                std::cout << spot << std::endl;
+                            }
                         }
                     }
                 }
                 characterCreationWindow.clear();
                 textbox[spot].textBox(font, playerInput, 24, sf::Color::Red, pos[spot], posy[spot]);
                 button[11].setButton(500, 50, 200, 600, sf::Color::White);
-                textbox[0].textBox(font, playerInput, 24, sf::Color::Red, 200, 600);
                 for (int i = 0; i <= 17; i++)
                 {
                     characterCreationWindow.draw(button[i].getButton());
@@ -282,16 +289,12 @@ int main()
                         {
                             playerInput += static_cast<char>(event.text.unicode);
                         }
-                        if (flag == 0)
-                        {
-                            n = event.text.unicode;
-                            con.ACII(n);
-                        }
                         if (event.text.unicode == '\x0D')
                         {
                             flag++;
                             loc += 50;
                             inven[spot].textBox(font, playerInput, 24, sf::Color::Red, 200, loc);
+                            con.arrayInv[spot] = playerInput;
                             playerInput = "";
                             std::cout << flag << std::endl;
                             spot++;
@@ -305,6 +308,7 @@ int main()
                 choiceBox[5].textBox(font, "Inventory", 24, sf::Color::Red, 30, 800);
                 characterCreationWindow.draw(button[12].getButton());
                 characterCreationWindow.draw(button[13].getButton());
+                // characterCreationWindow.draw(button[14].getButton());
                 characterCreationWindow.draw(button[15].getButton());
                 characterCreationWindow.draw(button[16].getButton());
                 characterCreationWindow.draw(button[17].getButton());
