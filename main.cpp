@@ -232,6 +232,7 @@ int main()
                             }
                             if (flag == 0)
                             {
+                                std::cout << n << std::endl;
                                 n = event.text.unicode;
                                 con.ACII(n);
                             }
@@ -308,7 +309,6 @@ int main()
                 choiceBox[5].textBox(font, "Inventory", 24, sf::Color::Red, 30, 800);
                 characterCreationWindow.draw(button[12].getButton());
                 characterCreationWindow.draw(button[13].getButton());
-                // characterCreationWindow.draw(button[14].getButton());
                 characterCreationWindow.draw(button[15].getButton());
                 characterCreationWindow.draw(button[16].getButton());
                 characterCreationWindow.draw(button[17].getButton());

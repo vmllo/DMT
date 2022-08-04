@@ -38,11 +38,11 @@ public:
     }                                                                                                                                           
     bool buttonPressed(sf::Vector2i p)                                               
     {                                                                        
-        size = button.getSize();                                             
+        size = button.getSize();      
+        pp = button.getPosition();                                                                                  
         float limitx = size.x + pp.x;                                        
         float limity = size.y + pp.y;                                        
         int returnValue = 0;                                                 
-        pp = button.getPosition();                                           
         if ((p.x < limitx && p.x > pp.x) && (p.y < limity && p.y > pp.y))    
         {                                                                    
            returnValue = 1;                                                 
